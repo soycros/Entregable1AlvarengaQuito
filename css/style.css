@@ -1,14 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 :root {
-  --primary: #4f46e5;
-  --primary-light: #a5b4fc;
-  --accent: #22d3ee;
-  --bg: #f9fafb;
-  --text: #111827;
-  --muted: #6b7280;
-  --radius: 10px;
-  --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --bg: #0f172a;          
+  --bg-card: #1e293b;       
+  --primary: #38bdf8;      
+  --primary-hover: #0ea5e9;    
+  --accent: #22d3ee;         
+  --text: #f1f5f9;            
+  --muted: #94a3b8;            
+  --success: #22c55e;
+  --danger: #ef4444;
+  --radius: 12px;
+  --shadow: 0 0 12px rgba(0, 0, 0, 0.4);
 }
 
 * {
@@ -19,7 +21,7 @@
 
 body {
   background-color: var(--bg);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: var(--text);
   min-height: 100vh;
   display: flex;
@@ -29,9 +31,9 @@ body {
 }
 
 .container {
-  background: white;
+  background-color: var(--bg-card);
   width: 100%;
-  max-width: 500px;
+  max-width: 520px;
   padding: 2rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -44,7 +46,7 @@ body {
 
 h1 {
   font-size: 1.8rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   color: var(--primary);
   font-weight: 600;
   text-align: center;
@@ -59,8 +61,10 @@ form {
 input[type="text"] {
   flex: 1;
   padding: 10px 14px;
-  border: 1px solid var(--primary-light);
+  border: 1px solid var(--muted);
   border-radius: var(--radius);
+  background-color: var(--bg);
+  color: var(--text);
   font-size: 0.95rem;
   outline: none;
   transition: border 0.2s ease;
@@ -72,17 +76,18 @@ input[type="text"]:focus {
 
 button {
   background-color: var(--primary);
-  color: white;
+  color: var(--bg);
   border: none;
   padding: 10px 16px;
   border-radius: var(--radius);
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background-color: var(--accent);
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
 }
 
 ul {
@@ -92,7 +97,8 @@ ul {
 }
 
 li {
-  background-color: #f3f4f6;
+  background-color: var(--bg);
+  border: 1px solid var(--muted);
   border-radius: var(--radius);
   padding: 12px 16px;
   margin-bottom: 12px;
@@ -103,7 +109,7 @@ li {
 }
 
 li:hover {
-  background-color: #e5e7eb;
+  background-color: var(--bg-card);
 }
 
 .completada {
@@ -129,6 +135,6 @@ li:hover {
 
 .botones button:hover {
   background-color: var(--primary);
-  color: white;
+  color: var(--bg);
   transform: translateY(-1px);
 }
