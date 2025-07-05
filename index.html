@@ -3,20 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mi Lista 2.0</title>
-  <link rel="stylesheet" href="./css/style.css"/>
+  <title>Mi Lista 3.0</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="./css/style.css">
+
+  <!-- Toastify CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
 </head>
 <body>
   <div class="container">
-    <h1>📝 Mi Lista 2.0</h1>
+    <h1>📝 Mi Lista 3.0</h1>
+
     <form id="formTarea">
       <input type="text" id="inputTarea" placeholder="Ingresá una tarea..." />
       <button type="submit">Agregar</button>
     </form>
-    <ul id="listaTareas"></ul>
-    <button id="vaciar">Vaciar lista</button>
-  </div>
 
+    <ul id="listaTareas"></ul>
+
+    <div class="botones">
+      <button id="cargarDesdeApi">📡 Cargar desde API</button>
+      <button id="vaciar">🗑️ Vaciar lista</button>
+    </div>
+  </div>
+  <!--Librería-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+  <!--Lógica-->
   <script src="./js/app.js"></script>
 </body>
 </html>
