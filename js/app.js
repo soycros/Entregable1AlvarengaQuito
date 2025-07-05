@@ -36,6 +36,18 @@ function mostrarToast(texto, color = "#38bdf8") {
   }).showToast();
 }
 
+function revisarPodio() {
+  return new Promise((resolve, reject) => {
+    const completas = tareas.filter(t => t.completada).length;
+    if (completas !== tareas.length || tareas.length === 0) {
+      return reject("Todavía hay tareas pendientes 🕓");
+    }
+    setTimeout(() => {
+      resolve("🏆 ¡Felicitaciones! Completaste todas tus tareas 🎯");
+    }, 1000);
+  });
+}
+
 function renderizarTareas() {
   lista.innerHTML = "";
 
@@ -54,22 +66,10 @@ function renderizarTareas() {
     lista.appendChild(li);
   });
 
-  // Felicitación sutil si todas las tareas están completadas
-  const todasCompletadas = tareas.length > 0 && tareas.every(t => t.completada);
-  if (todasCompletadas) {
-    Toastify({
-      text: "🎉 ¡Todas las tareas completadas! Bien ahí 💯",
-      duration: 3500,
-      gravity: "top",
-      position: "center",
-      style: {
-        background: "linear-gradient(to right, #22c55e, #4ade80)",
-        color: "white",
-        fontWeight: "bold",
-        borderRadius: "12px",
-      }
-    }).showToast();
-  }
+  // ⚡ Verificar podio al actualizar lista
+  revisarPodio()
+    .then(msg => mostrarToast(msg, "#22c55e"))
+    .catch(() => {}); // No mostramos nada si hay pendientes
 }
 
 function agregarTarea(texto) {
@@ -135,7 +135,7 @@ async function cargarDesdeAPI() {
   }
 }
 
-// Eventos
+// 🎯 Eventos
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   agregarTarea(input.value);
@@ -145,5 +145,5 @@ form.addEventListener("submit", (e) => {
 btnVaciar.addEventListener("click", vaciarTareas);
 btnCargarApi.addEventListener("click", cargarDesdeAPI);
 
-// Inicialización
+// 🧠 Iniciar app
 renderizarTareas();
