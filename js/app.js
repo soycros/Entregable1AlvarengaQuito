@@ -43,7 +43,7 @@ function revisarPodio() {
       return reject("Todavía hay tareas pendientes 🕓");
     }
     setTimeout(() => {
-      resolve("🏆 ¡Felicitaciones! Completaste todas tus tareas 🎯");
+      resolve("¡Felicitaciones! Completaste todas tus tareas! 🏆🏆");
     }, 1000);
   });
 }
@@ -91,7 +91,7 @@ function marcar(id) {
     tarea.toggle();
     guardarEnStorage();
     renderizarTareas();
-    mostrarToast("Tarea actualizada 👍", "#0ea5e9");
+    mostrarToast("Tarea actualizada", "#0ea5e9");
   }
 }
 
@@ -122,12 +122,12 @@ async function cargarDesdeAPI() {
     data.forEach(t => tareas.push(new Tarea(t.title)));
     guardarEnStorage();
     renderizarTareas();
-    mostrarToast("Tareas cargadas desde API 🌐");
+    mostrarToast("Tareas cargadas desde API");
   } catch (err) {
     console.error(err);
     Swal.fire({
       title: "Error",
-      text: "No se pudo cargar la API 😢",
+      text: "No se pudo cargar la API",
       icon: "error",
       background: "#1e293b",
       color: "#f1f5f9"
