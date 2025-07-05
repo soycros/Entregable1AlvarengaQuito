@@ -10,7 +10,6 @@ class Tarea {
   }
 }
 
-// Obtener del storage si existe
 let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
 
 const form = document.getElementById("formTarea");
@@ -23,20 +22,23 @@ function guardarEnStorage() {
   localStorage.setItem("tareas", JSON.stringify(tareas));
 }
 
-function mostrarToast(texto, color = "#198754") {
+function mostrarToast(texto, color = "#38bdf8") {
   Toastify({
     text: texto,
-    duration: 2500,
+    duration: 3000,
     gravity: "top",
     position: "center",
     style: {
       background: color,
+      borderRadius: "12px",
+      fontWeight: "600"
     }
   }).showToast();
 }
 
 function renderizarTareas() {
   lista.innerHTML = "";
+
   if (tareas.length === 0) {
     lista.innerHTML = "<li>No hay tareas por ahora 😴</li>";
     return;
@@ -51,11 +53,28 @@ function renderizarTareas() {
     `;
     lista.appendChild(li);
   });
+
+  // Felicitación sutil si todas las tareas están completadas
+  const todasCompletadas = tareas.length > 0 && tareas.every(t => t.completada);
+  if (todasCompletadas) {
+    Toastify({
+      text: "🎉 ¡Todas las tareas completadas! Bien ahí 💯",
+      duration: 3500,
+      gravity: "top",
+      position: "center",
+      style: {
+        background: "linear-gradient(to right, #22c55e, #4ade80)",
+        color: "white",
+        fontWeight: "bold",
+        borderRadius: "12px",
+      }
+    }).showToast();
+  }
 }
 
 function agregarTarea(texto) {
   if (!texto.trim()) {
-    mostrarToast("La tarea no puede estar vacía", "#dc3545");
+    mostrarToast("La tarea no puede estar vacía", "#ef4444");
     return;
   }
 
@@ -63,7 +82,7 @@ function agregarTarea(texto) {
   tareas.push(nueva);
   guardarEnStorage();
   renderizarTareas();
-  mostrarToast("Tarea agregada con éxito");
+  mostrarToast("Tarea agregada con éxito ✅", "#22c55e");
 }
 
 function marcar(id) {
@@ -72,7 +91,7 @@ function marcar(id) {
     tarea.toggle();
     guardarEnStorage();
     renderizarTareas();
-    mostrarToast("Tarea actualizada 👍");
+    mostrarToast("Tarea actualizada 👍", "#0ea5e9");
   }
 }
 
@@ -82,14 +101,16 @@ function vaciarTareas() {
     text: "Esta acción no se puede deshacer",
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonText: 'Vaciar',
-    cancelButtonText: 'Cancelar'
+    confirmButtonText: 'Sí, vaciar',
+    cancelButtonText: 'Cancelar',
+    background: "#1e293b",
+    color: "#f1f5f9"
   }).then((result) => {
     if (result.isConfirmed) {
       tareas = [];
       guardarEnStorage();
       renderizarTareas();
-      mostrarToast("Lista vaciada 🗑️", "#ffc107");
+      mostrarToast("Lista vaciada 🗑️", "#f59e0b");
     }
   });
 }
@@ -104,7 +125,13 @@ async function cargarDesdeAPI() {
     mostrarToast("Tareas cargadas desde API 🌐");
   } catch (err) {
     console.error(err);
-    Swal.fire("Error", "No se pudo cargar la API 😢", "error");
+    Swal.fire({
+      title: "Error",
+      text: "No se pudo cargar la API 😢",
+      icon: "error",
+      background: "#1e293b",
+      color: "#f1f5f9"
+    });
   }
 }
 
