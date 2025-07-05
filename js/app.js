@@ -82,7 +82,7 @@ function vaciarTareas() {
     text: "Esta acción no se puede deshacer",
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonText: 'Sí, vaciar',
+    confirmButtonText: 'Vaciar',
     cancelButtonText: 'Cancelar'
   }).then((result) => {
     if (result.isConfirmed) {
