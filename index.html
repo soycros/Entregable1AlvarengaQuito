@@ -3,17 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mi Lista Interactiva</title>
-  <link rel="stylesheet" href="style.css"/>
+  <title>Mi Lista 2.0</title>
+  <link rel="stylesheet" href="./css/style.css"/>
 </head>
 <body>
   <div class="container">
-    <h1>Mi Lista de Tareas</h1>
-    <input type="text" id="nuevaTarea" placeholder="Escribí una tarea..."/>
-    <button onclick="agregarTarea()">Agregar</button>
+    <h1>📝 Mi Lista 2.0</h1>
+    <form id="formTarea">
+      <input type="text" id="inputTarea" placeholder="Ingresá una tarea..." />
+      <button type="submit">Agregar</button>
+    </form>
     <ul id="listaTareas"></ul>
+    <button id="vaciar">Vaciar lista</button>
   </div>
-  <script src="app.js"></script>
+
+  <script src="./js/app.js"></script>
 </body>
 </html>
+
 <!--Simulador: Lista de Tareas por Consola-->
