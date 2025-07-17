@@ -1,20 +1,20 @@
 [
   {
-    "texto": "Estudiar para el parcial",
-    "categoria": "Estudio",
-    "prioridad": "Alta",
-    "fechaVencimiento": "2025-07-21"
-  },
-  {
-    "texto": "Enviar presupuesto por email",
+    "texto": "Enviar informe de prácticas",
     "categoria": "Trabajo",
-    "prioridad": "Media",
+    "prioridad": "Alta",
     "fechaVencimiento": "2025-07-19"
   },
   {
-    "texto": "Comprar verduras",
-    "categoria": "Personal",
+    "texto": "Estudiar lógica booleana",
+    "categoria": "Estudio",
+    "prioridad": "Media",
+    "fechaVencimiento": "2025-07-20"
+  },
+  {
+    "texto": "Hacer ejercicio",
+    "categoria": "Salud",
     "prioridad": "Baja",
-    "fechaVencimiento": "2025-07-18"
+    "fechaVencimiento": "2025-07-21"
   }
 ]

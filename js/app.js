@@ -1,6 +1,6 @@
 class Tarea {
   constructor(texto, categoria = "General", prioridad = "Media", fechaVencimiento = null) {
-    this.id = Date.now() + Math.floor(Math.random() * 1000); // ID único
+    this.id = Date.now() + Math.floor(Math.random() * 1000);
     this.texto = texto;
     this.categoria = categoria;
     this.prioridad = prioridad;
@@ -84,22 +84,29 @@ function renderizarTareas() {
     .catch(() => {});
 }
 
-function agregarTarea(texto) {
-  if (!texto.trim()) {
-    mostrarToast("La tarea no puede estar vacía", "#ef4444");
-    return;
-  }
+function agregarTarea(texto, categoria, prioridad, fechaVencimiento) {
+  const camposFaltantes = [];
 
-  if (!selectPrioridad.value) {
-    mostrarToast("Seleccioná una prioridad", "#ef4444");
+  if (!texto.trim()) camposFaltantes.push("el texto");
+  if (!categoria) camposFaltantes.push("la categoría");
+  if (!prioridad) camposFaltantes.push("la prioridad");
+
+  if (camposFaltantes.length > 0) {
+    Swal.fire({
+      icon: "warning",
+      title: "Falta completar",
+      text: `Completá ${camposFaltantes.join(", ")} antes de agregar la tarea.`,
+      background: "#1e293b",
+      color: "#f1f5f9"
+    });
     return;
   }
 
   const nueva = new Tarea(
     texto.trim(),
-    selectCategoria.value,
-    selectPrioridad.value,
-    inputFecha.value || null
+    categoria,
+    prioridad,
+    fechaVencimiento || null
   );
 
   tareas.push(nueva);
@@ -181,9 +188,18 @@ flatpickr("#inputFecha", {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  agregarTarea(input.value);
+
+  const texto = input.value;
+  const categoria = selectCategoria.value;
+  const prioridad = selectPrioridad.value;
+  const fecha = inputFecha.value;
+
+  agregarTarea(texto, categoria, prioridad, fecha);
+
   input.value = "";
   inputFecha.value = "";
+  selectCategoria.selectedIndex = 0;
+  selectPrioridad.selectedIndex = 0;
 });
 
 btnVaciar.addEventListener("click", vaciarTareas);
