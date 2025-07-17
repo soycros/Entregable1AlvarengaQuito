@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+<<<<<<< HEAD
 :root {
   --bg: #0f172a;          
   --bg-card: #1e293b;       
@@ -7,6 +8,17 @@
   --accent: #22d3ee;         
   --text: #f1f5f9;            
   --muted: #94a3b8;            
+=======
+
+:root {
+  --bg: #0f172a;
+  --bg-card: #1e293b;
+  --primary: #38bdf8;
+  --primary-hover: #0ea5e9;
+  --accent: #22d3ee;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
   --success: #22c55e;
   --danger: #ef4444;
   --radius: 12px;
@@ -54,12 +66,32 @@ h1 {
 
 form {
   display: flex;
+<<<<<<< HEAD
+=======
+  flex-wrap: wrap;
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
   gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
+<<<<<<< HEAD
 input[type="text"] {
   flex: 1;
+=======
+form > * {
+  flex: 1 1 calc(50% - 0.5rem);
+  min-width: 120px;
+}
+
+form button[type="submit"] {
+  flex: 1 1 100%;
+  margin-top: 0.5rem;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
   padding: 10px 14px;
   border: 1px solid var(--muted);
   border-radius: var(--radius);
@@ -70,7 +102,13 @@ input[type="text"] {
   transition: border 0.2s ease;
 }
 
+<<<<<<< HEAD
 input[type="text"]:focus {
+=======
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus {
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
   border-color: var(--primary);
 }
 
@@ -106,12 +144,39 @@ li {
   justify-content: space-between;
   align-items: center;
   transition: all 0.2s ease;
+<<<<<<< HEAD
+=======
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
 }
 
 li:hover {
   background-color: var(--bg-card);
 }
 
+<<<<<<< HEAD
+=======
+li button {
+  background-color: var(--accent);
+  border: none;
+  color: var(--bg);
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+li button:hover {
+  background-color: var(--primary-hover);
+}
+
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
 .completada {
   text-decoration: line-through;
   color: var(--muted);
@@ -138,3 +203,37 @@ li:hover {
   color: var(--bg);
   transform: translateY(-1px);
 }
+<<<<<<< HEAD
+=======
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg fill='%23f1f5f9' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  padding-right: 36px;
+}
+  
+
+@media (max-width: 480px) {
+  form {
+    flex-direction: column;
+  }
+
+  form > * {
+    flex: 1 1 100%;
+  }
+
+  .botones {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .botones button {
+    width: 100%;
+  }
+}
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)

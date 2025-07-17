@@ -1,0 +1,20 @@
+[
+  {
+    "texto": "Estudiar para el parcial",
+    "categoria": "Estudio",
+    "prioridad": "Alta",
+    "fechaVencimiento": "2025-07-21"
+  },
+  {
+    "texto": "Enviar presupuesto por email",
+    "categoria": "Trabajo",
+    "prioridad": "Media",
+    "fechaVencimiento": "2025-07-19"
+  },
+  {
+    "texto": "Comprar verduras",
+    "categoria": "Personal",
+    "prioridad": "Baja",
+    "fechaVencimiento": "2025-07-18"
+  }
+]

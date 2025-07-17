@@ -1,7 +1,16 @@
 class Tarea {
+<<<<<<< HEAD
   constructor(texto) {
     this.id = Date.now();
     this.texto = texto;
+=======
+  constructor(texto, categoria = "General", prioridad = "Media", fechaVencimiento = null) {
+    this.id = Date.now();
+    this.texto = texto;
+    this.categoria = categoria;
+    this.prioridad = prioridad;
+    this.fechaVencimiento = fechaVencimiento;
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
     this.completada = false;
   }
 
@@ -14,9 +23,19 @@ let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
 
 const form = document.getElementById("formTarea");
 const input = document.getElementById("inputTarea");
+<<<<<<< HEAD
 const lista = document.getElementById("listaTareas");
 const btnVaciar = document.getElementById("vaciar");
 const btnCargarApi = document.getElementById("cargarDesdeApi");
+=======
+const selectCategoria = document.getElementById("selectCategoria");
+const selectPrioridad = document.getElementById("selectPrioridad");
+const inputFecha = document.getElementById("inputFecha");
+const lista = document.getElementById("listaTareas");
+const btnVaciar = document.getElementById("vaciar");
+const btnCargarApi = document.getElementById("cargarDesdeApi");
+const btnCargarLocal = document.getElementById("cargarDesdeJSON");
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
 
 function guardarEnStorage() {
   localStorage.setItem("tareas", JSON.stringify(tareas));
@@ -42,9 +61,13 @@ function revisarPodio() {
     if (completas !== tareas.length || tareas.length === 0) {
       return reject("Todavía hay tareas pendientes 🕓");
     }
+<<<<<<< HEAD
     setTimeout(() => {
       resolve("¡Felicitaciones! Completaste todas tus tareas! 🏆🏆");
     }, 1000);
+=======
+    setTimeout(() => resolve("¡Felicitaciones! Completaste todas tus tareas 🏆"), 800);
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
   });
 }
 
@@ -60,16 +83,27 @@ function renderizarTareas() {
     const li = document.createElement("li");
     li.className = t.completada ? "completada" : "";
     li.innerHTML = `
+<<<<<<< HEAD
       ${t.texto}
+=======
+      <strong>${t.texto}</strong> | <em>${t.categoria}</em> | ${t.prioridad} | 
+      ${t.fechaVencimiento ? `Vence: ${t.fechaVencimiento}` : ""}
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
       <button onclick="marcar(${t.id})">✓</button>
     `;
     lista.appendChild(li);
   });
 
+<<<<<<< HEAD
   // ⚡ Verificar podio al actualizar lista
   revisarPodio()
     .then(msg => mostrarToast(msg, "#22c55e"))
     .catch(() => {}); // No mostramos nada si hay pendientes
+=======
+  revisarPodio()
+    .then(msg => mostrarToast(msg, "#22c55e"))
+    .catch(() => {});
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
 }
 
 function agregarTarea(texto) {
@@ -78,7 +112,17 @@ function agregarTarea(texto) {
     return;
   }
 
+<<<<<<< HEAD
   const nueva = new Tarea(texto.trim());
+=======
+  const nueva = new Tarea(
+    texto.trim(),
+    selectCategoria.value,
+    selectPrioridad.value,
+    inputFecha.value || null
+  );
+
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
   tareas.push(nueva);
   guardarEnStorage();
   renderizarTareas();
@@ -117,7 +161,11 @@ function vaciarTareas() {
 
 async function cargarDesdeAPI() {
   try {
+<<<<<<< HEAD
     const res = await fetch("https://jsonplaceholder.typicode.com/todos?_limit=3");
+=======
+    const res = await fetch("https://jsonplaceholder.typicode.com/todos?_limit=5");
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
     const data = await res.json();
     data.forEach(t => tareas.push(new Tarea(t.title)));
     guardarEnStorage();
@@ -135,15 +183,43 @@ async function cargarDesdeAPI() {
   }
 }
 
+<<<<<<< HEAD
 // 🎯 Eventos
+=======
+async function cargarDesdeJSON() {
+  try {
+    const res = await fetch("./data/tareas.json");
+    const data = await res.json();
+    data.forEach(t => tareas.push(new Tarea(t.texto, t.categoria, t.prioridad, t.fechaVencimiento)));
+    guardarEnStorage();
+    renderizarTareas();
+    mostrarToast("Tareas cargadas desde JSON 📄");
+  } catch (err) {
+    console.error(err);
+    mostrarToast("Error al cargar JSON ❌", "#ef4444");
+  }
+}
+
+// Eventos
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   agregarTarea(input.value);
   input.value = "";
+<<<<<<< HEAD
+=======
+  inputFecha.value = "";
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
 });
 
 btnVaciar.addEventListener("click", vaciarTareas);
 btnCargarApi.addEventListener("click", cargarDesdeAPI);
+<<<<<<< HEAD
 
 // 🧠 Iniciar app
+=======
+btnCargarLocal.addEventListener("click", cargarDesdeJSON);
+
+// Iniciar la app
+>>>>>>> 42b8b82 (Entrega Final Alvarenga)
 renderizarTareas();
