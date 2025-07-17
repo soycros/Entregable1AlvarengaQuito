@@ -1,14 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-<<<<<<< HEAD
-:root {
-  --bg: #0f172a;          
-  --bg-card: #1e293b;       
-  --primary: #38bdf8;      
-  --primary-hover: #0ea5e9;    
-  --accent: #22d3ee;         
-  --text: #f1f5f9;            
-  --muted: #94a3b8;            
-=======
 
 :root {
   --bg: #0f172a;
@@ -18,7 +8,6 @@
   --accent: #22d3ee;
   --text: #f1f5f9;
   --muted: #94a3b8;
->>>>>>> 42b8b82 (Entrega Final Alvarenga)
   --success: #22c55e;
   --danger: #ef4444;
   --radius: 12px;
@@ -66,18 +55,11 @@ h1 {
 
 form {
   display: flex;
-<<<<<<< HEAD
-=======
   flex-wrap: wrap;
->>>>>>> 42b8b82 (Entrega Final Alvarenga)
   gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
-<<<<<<< HEAD
-input[type="text"] {
-  flex: 1;
-=======
 form > * {
   flex: 1 1 calc(50% - 0.5rem);
   min-width: 120px;
@@ -91,7 +73,6 @@ form button[type="submit"] {
 input[type="text"],
 input[type="date"],
 select {
->>>>>>> 42b8b82 (Entrega Final Alvarenga)
   padding: 10px 14px;
   border: 1px solid var(--muted);
   border-radius: var(--radius);
@@ -102,13 +83,9 @@ select {
   transition: border 0.2s ease;
 }
 
-<<<<<<< HEAD
-input[type="text"]:focus {
-=======
 input[type="text"]:focus,
 input[type="date"]:focus,
 select:focus {
->>>>>>> 42b8b82 (Entrega Final Alvarenga)
   border-color: var(--primary);
 }
 
@@ -144,23 +121,18 @@ li {
   justify-content: space-between;
   align-items: center;
   transition: all 0.2s ease;
-<<<<<<< HEAD
-=======
   animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
->>>>>>> 42b8b82 (Entrega Final Alvarenga)
 }
 
 li:hover {
   background-color: var(--bg-card);
 }
 
-<<<<<<< HEAD
-=======
 li button {
   background-color: var(--accent);
   border: none;
@@ -176,7 +148,6 @@ li button:hover {
   background-color: var(--primary-hover);
 }
 
->>>>>>> 42b8b82 (Entrega Final Alvarenga)
 .completada {
   text-decoration: line-through;
   color: var(--muted);
@@ -203,9 +174,8 @@ li button:hover {
   color: var(--bg);
   transform: translateY(-1px);
 }
-<<<<<<< HEAD
-=======
 
+/* Flechita custom para SELECT */
 select {
   appearance: none;
   -webkit-appearance: none;
@@ -216,7 +186,6 @@ select {
   background-size: 16px;
   padding-right: 36px;
 }
-  
 
 @media (max-width: 480px) {
   form {
@@ -236,4 +205,3 @@ select {
     width: 100%;
   }
 }
->>>>>>> 42b8b82 (Entrega Final Alvarenga)
