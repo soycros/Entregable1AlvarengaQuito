@@ -1,6 +1,6 @@
 class Tarea {
   constructor(texto, categoria = "General", prioridad = "Media", fechaVencimiento = null) {
-    this.id = Date.now();
+    this.id = Date.now() + Math.floor(Math.random() * 1000); // ID único
     this.texto = texto;
     this.categoria = categoria;
     this.prioridad = prioridad;
@@ -67,9 +67,16 @@ function renderizarTareas() {
     li.innerHTML = `
       <strong>${t.texto}</strong> | <em>${t.categoria}</em> | ${t.prioridad} | 
       ${t.fechaVencimiento ? `Vence: ${t.fechaVencimiento}` : ""}
-      <button onclick="marcar(${t.id})">✓</button>
+      <button data-id="${t.id}" class="btn-marcar">✓</button>
     `;
     lista.appendChild(li);
+  });
+
+  document.querySelectorAll(".btn-marcar").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = parseInt(btn.dataset.id);
+      marcar(id);
+    });
   });
 
   revisarPodio()
@@ -80,6 +87,11 @@ function renderizarTareas() {
 function agregarTarea(texto) {
   if (!texto.trim()) {
     mostrarToast("La tarea no puede estar vacía", "#ef4444");
+    return;
+  }
+
+  if (!selectPrioridad.value) {
+    mostrarToast("Seleccioná una prioridad", "#ef4444");
     return;
   }
 
@@ -161,6 +173,11 @@ async function cargarDesdeJSON() {
     mostrarToast("Error al cargar JSON ❌", "#ef4444");
   }
 }
+
+flatpickr("#inputFecha", {
+  dateFormat: "Y-m-d",
+  minDate: "today"
+});
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
