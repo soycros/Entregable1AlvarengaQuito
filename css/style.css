@@ -89,6 +89,13 @@ select:focus {
   border-color: var(--primary);
 }
 
+#inputDescripcion {
+  flex: 1 1 100%;
+  margin-top: 0.2rem;
+  font-style: italic;
+  font-size: 0.92rem;
+}
+
 button {
   background-color: var(--primary);
   color: var(--bg);
@@ -133,6 +140,13 @@ li:hover {
   background-color: var(--bg-card);
 }
 
+.tarea-completada {
+  background-color: #19353e;
+  opacity: 0.6;
+  border-left: 4px solid var(--success);
+  transition: all 0.3s ease;
+}
+
 .info-tarea {
   display: flex;
   flex-direction: column;
@@ -144,6 +158,12 @@ li:hover {
   font-size: 1rem;
   font-weight: 600;
   color: var(--text);
+}
+
+.info-tarea p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 2px;
 }
 
 .categoria {
@@ -159,7 +179,6 @@ li:hover {
   font-style: italic;
 }
 
-/* Botones dentro de cada tarea */
 .acciones-tarea {
   display: flex;
   gap: 10px;
@@ -179,17 +198,6 @@ li:hover {
 
 .acciones-tarea button:hover {
   background-color: var(--primary-hover);
-}
-
-li button {
-  background-color: var(--accent);
-  border: none;
-  color: var(--bg);
-  padding: 6px 10px;
-  border-radius: var(--radius);
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 li button:hover {
@@ -223,7 +231,6 @@ li button:hover {
   transform: translateY(-1px);
 }
 
-/* Flechita custom para SELECT */
 select {
   appearance: none;
   -webkit-appearance: none;
