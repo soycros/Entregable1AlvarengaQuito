@@ -154,8 +154,8 @@ function vaciarTareas() {
 }
 
 async function cargarDesdeAPI() {
-  if (apiCargada || tareas.length > 0) {
-    mostrarToast("Las tareas ya fueron cargadas desde API 🔁", "#f87171")
+  if (apiCargada) {
+    mostrarToast("Las tareas ya fueron cargadas desde la API 🔁", "#f87171")
     return
   }
 
@@ -166,7 +166,7 @@ async function cargarDesdeAPI() {
     apiCargada = true
     guardarEnStorage(tareas)
     renderizarTareas()
-    mostrarToast("Tareas cargadas desde API")
+    mostrarToast("Tareas cargadas desde API ✅")
   } catch (error) {
     Swal.fire({
       title: "Error",
@@ -178,9 +178,10 @@ async function cargarDesdeAPI() {
   }
 }
 
+
 async function cargarDesdeJSON() {
-  if (jsonCargado || tareas.length > 0) {
-    mostrarToast("Las tareas ya fueron cargadas desde JSON 🔁", "#f87171")
+  if (jsonCargado) {
+    mostrarToast("Las tareas ya fueron cargadas desde JSON 📄", "#f87171")
     return
   }
 
@@ -193,11 +194,12 @@ async function cargarDesdeJSON() {
     jsonCargado = true
     guardarEnStorage(tareas)
     renderizarTareas()
-    mostrarToast("Tareas cargadas desde JSON 📄")
+    mostrarToast("Tareas cargadas desde JSON ✅")
   } catch (error) {
     mostrarToast("Error al cargar JSON ❌", "#ef4444")
   }
 }
+
 
 flatpickr("#inputFecha", {
   dateFormat: "Y-m-d",
