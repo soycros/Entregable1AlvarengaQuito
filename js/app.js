@@ -4,6 +4,7 @@ let jsonCargado = false
 
 const form = document.getElementById("formTarea")
 const inputTexto = document.getElementById("inputTarea")
+const inputDescripcion = document.getElementById("inputDescripcion")
 const selectCategoria = document.getElementById("selectCategoria")
 const selectPrioridad = document.getElementById("selectPrioridad")
 const inputFecha = document.getElementById("inputFecha")
@@ -22,11 +23,13 @@ function renderizarTareas() {
 
   tareas.forEach(tarea => {
     const item = document.createElement("li")
-    item.className = tarea.completada ? "completada" : ""
+    item.className = tarea.completada ? "completada tarea-completada" : ""
+    item.setAttribute("data-id", tarea.id)
 
     item.innerHTML = `
       <div class="info-tarea">
         <strong>${tarea.texto}</strong>
+        <p>${tarea.descripcion || ""}</p>
         <span class="categoria">Categoría: ${tarea.categoria}</span>
         <span class="prioridad">Prioridad: ${tarea.prioridad}</span>
         ${tarea.fechaVencimiento ? `<span class="fecha">Vence: ${tarea.fechaVencimiento}</span>` : ""}
@@ -86,7 +89,7 @@ function renderizarTareas() {
     .catch(() => {})
 }
 
-function agregarTarea(texto, categoria, prioridad, fechaVencimiento) {
+function agregarTarea(texto, descripcion, categoria, prioridad, fechaVencimiento) {
   const camposFaltantes = []
   if (!texto.trim()) camposFaltantes.push("el texto")
   if (!categoria) camposFaltantes.push("la categoría")
@@ -103,7 +106,14 @@ function agregarTarea(texto, categoria, prioridad, fechaVencimiento) {
     return
   }
 
+  const tareaDuplicada = tareas.some(t => t.texto === texto.trim())
+  if (tareaDuplicada) {
+    Swal.fire("Ya existe una tarea con ese título.")
+    return
+  }
+
   const nuevaTarea = new Tarea(texto.trim(), categoria, prioridad, fechaVencimiento || null)
+  nuevaTarea.descripcion = descripcion.trim() || ""
   tareas.push(nuevaTarea)
   guardarEnStorage(tareas)
   renderizarTareas()
@@ -117,6 +127,9 @@ function marcarTarea(id) {
     guardarEnStorage(tareas)
     renderizarTareas()
     mostrarToast("Tarea actualizada", "#0ea5e9")
+
+    const tareaDiv = document.querySelector(`[data-id='${id}']`)
+    tareaDiv.classList.toggle("tarea-completada", tarea.completada)
   }
 }
 
@@ -195,13 +208,15 @@ form.addEventListener("submit", (evento) => {
   evento.preventDefault()
 
   const texto = inputTexto.value
+  const descripcion = inputDescripcion.value
   const categoria = selectCategoria.value
   const prioridad = selectPrioridad.value
   const fecha = inputFecha.value
 
-  agregarTarea(texto, categoria, prioridad, fecha)
+  agregarTarea(texto, descripcion, categoria, prioridad, fecha)
 
   inputTexto.value = ""
+  inputDescripcion.value = ""
   inputFecha.value = ""
   selectCategoria.selectedIndex = 0
   selectPrioridad.selectedIndex = 0
