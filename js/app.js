@@ -1,6 +1,19 @@
-let tareas = JSON.parse(localStorage.getItem("tareas")) || []
+let tareas = []
 let apiCargada = false
 let jsonCargado = false
+
+function restaurarDesdeStorage() {
+  const tareasGuardadas = JSON.parse(localStorage.getItem("tareas")) || []
+  tareas = tareasGuardadas.map(t => {
+    const tarea = new Tarea(t.texto, t.categoria, t.prioridad, t.fechaVencimiento)
+    tarea.descripcion = t.descripcion || ""
+    tarea.completada = t.completada || false
+    tarea.id = t.id || generarId()
+    return tarea
+  })
+}
+
+restaurarDesdeStorage()
 
 const form = document.getElementById("formTarea")
 const inputTexto = document.getElementById("inputTarea")
@@ -133,6 +146,10 @@ function marcarTarea(id) {
   }
 }
 
+function guardarEnStorage(tareas) {
+  localStorage.setItem("tareas", JSON.stringify(tareas))
+}
+
 function vaciarTareas() {
   Swal.fire({
     title: '¿Vaciar toda la lista?',
@@ -162,7 +179,11 @@ async function cargarDesdeAPI() {
   try {
     const respuesta = await fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
     const datos = await respuesta.json()
-    datos.forEach(t => tareas.push(new Tarea(t.title)))
+    datos.forEach(t => {
+      const nuevaTarea = new Tarea(t.title, "General", "Media", null)
+      nuevaTarea.descripcion = "Importada desde API"
+      tareas.push(nuevaTarea)
+    })
     apiCargada = true
     guardarEnStorage(tareas)
     renderizarTareas()
@@ -178,7 +199,6 @@ async function cargarDesdeAPI() {
   }
 }
 
-
 async function cargarDesdeJSON() {
   if (jsonCargado) {
     mostrarToast("Las tareas ya fueron cargadas desde JSON 📄", "#f87171")
@@ -188,9 +208,11 @@ async function cargarDesdeJSON() {
   try {
     const respuesta = await fetch("./data/tareas.json")
     const datos = await respuesta.json()
-    datos.forEach(t =>
-      tareas.push(new Tarea(t.texto, t.categoria, t.prioridad, t.fechaVencimiento))
-    )
+    datos.forEach(t => {
+      const nuevaTarea = new Tarea(t.texto, t.categoria, t.prioridad, t.fechaVencimiento)
+      nuevaTarea.descripcion = t.descripcion || "Tarea importada"
+      tareas.push(nuevaTarea)
+    })
     jsonCargado = true
     guardarEnStorage(tareas)
     renderizarTareas()
@@ -199,7 +221,6 @@ async function cargarDesdeJSON() {
     mostrarToast("Error al cargar JSON ❌", "#ef4444")
   }
 }
-
 
 flatpickr("#inputFecha", {
   dateFormat: "Y-m-d",
@@ -215,8 +236,7 @@ form.addEventListener("submit", (evento) => {
   const prioridad = selectPrioridad.value
   const fecha = inputFecha.value
 
-  agregarTarea(texto, descripcion, categoria, prioridad, fecha)
-
+  agregarTarea(texto, descripcion, categoria, prioridad, fecha) 
   inputTexto.value = ""
   inputDescripcion.value = ""
   inputFecha.value = ""
