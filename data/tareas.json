@@ -1,0 +1,20 @@
+[
+  {
+    "texto": "Enviar informe de prácticas",
+    "categoria": "Trabajo",
+    "prioridad": "Alta",
+    "fechaVencimiento": "2025-07-19"
+  },
+  {
+    "texto": "Estudiar lógica booleana",
+    "categoria": "Estudio",
+    "prioridad": "Media",
+    "fechaVencimiento": "2025-07-20"
+  },
+  {
+    "texto": "Hacer ejercicio",
+    "categoria": "Salud",
+    "prioridad": "Baja",
+    "fechaVencimiento": "2025-07-21"
+  }
+]

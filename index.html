@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Lista</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📝 Mi Lista 3.0</h1>
+
+    <form id="formTarea" autocomplete="off">
+      <input type="text" id="inputTarea" placeholder="Ingresá una tarea..." />
+
+      <select id="selectCategoria">
+        <option value="" disabled selected>Categoría</option>
+        <option value="Estudio">Estudio</option>
+        <option value="Trabajo">Trabajo</option>
+        <option value="Personal">Personal</option>
+        <option value="Salud">Salud</option>
+        <option value="General">General</option>
+      </select>
+
+      <select id="selectPrioridad">
+        <option value="" disabled selected>Prioridad</option>
+        <option value="Alta">Alta</option>
+        <option value="Media">Media</option>
+        <option value="Baja">Baja</option>
+      </select>
+
+      <input type="text" id="inputFecha" placeholder="Fecha de vencimiento" />
+
+      <button type="submit">➕ Agregar tarea</button>
+    </form>
+
+    <section>
+      <h2>📋 Tareas pendientes</h2>
+      <ul id="listaTareas"></ul>
+    </section>
+
+    <div class="botones">
+      <button id="cargarDesdeApi">📡 Cargar desde API</button>
+      <button id="cargarDesdeJSON">📁 Cargar desde JSON</button>
+      <button id="vaciar">🧹 Vaciar lista</button>
+    </div>
+  </div>
+
+  <!-- Librerías -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <!-- Scripts del proyecto -->
+  <script src="./js/tareas.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
